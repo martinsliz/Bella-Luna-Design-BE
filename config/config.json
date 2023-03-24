@@ -1,0 +1,14 @@
+{
+  "development": {
+    "database": "bella_development",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "bella_test",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "bella_production",
+    "dialect": "postgres"
+  }
+}
