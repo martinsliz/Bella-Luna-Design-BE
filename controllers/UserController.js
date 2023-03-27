@@ -98,10 +98,8 @@ const GetUserById = async (req, res) => {
     const user = await User.findByPk(userId, {
       include: [
         {
-          model: Class,
-          as: 'classes',
-          through: { attributes: [] },
-          attributes: ['id', 'name', 'credits']
+          model: Order,
+          attributes: ['id']
         }
       ]
     })
