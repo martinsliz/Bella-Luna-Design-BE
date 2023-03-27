@@ -1,7 +1,7 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Box extends Model {
+  class OrderList extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Box.init(
+  OrderList.init(
     {
       orderId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'products',
+          model: 'orders',
           key: 'id'
         }
       },
@@ -25,16 +25,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'orders',
+          model: 'products',
           key: 'id'
         }
       }
     },
     {
       sequelize,
-      modelName: 'Box',
-      tableName: 'boxes'
+      modelName: 'OrderList',
+      tableName: 'order_lists'
     }
   )
-  return Box
+  return OrderList
 }
