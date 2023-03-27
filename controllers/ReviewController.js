@@ -2,7 +2,7 @@ const { Review } = require('../models')
 
 const GetReviews = async (req, res) => {
   try {
-    const reviews = await Review.findAll({ order: [['createdAt', 'DESC']] })
+    const reviews = await Review.findAll()
     res.send(reviews)
   } catch (error) {
     throw error

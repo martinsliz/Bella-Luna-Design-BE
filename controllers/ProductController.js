@@ -1,11 +1,13 @@
-const { Product, User, Review } = require('../models')
+const { Product, Review } = require('../models')
 const sequelize = require('sequelize')
 // const { Op } = require('sequelize')
 
 const CreateProduct = async (req, res) => {
+  console.log(req.body)
   try {
-    let product = await Product.create({ ...req.body })
-    res.send(product)
+    // let productBody = { req.body }
+    let myProduct = await Product.create({ ...req.body })
+    res.send(myProduct)
   } catch (error) {
     throw error
   }
@@ -14,7 +16,6 @@ const CreateProduct = async (req, res) => {
 const GetProducts = async (req, res) => {
   try {
     const products = await Product.findAll({
-      order: [['id', 'ASC']],
       include: [
         {
           model: Review,

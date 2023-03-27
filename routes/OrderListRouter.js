@@ -1,21 +1,21 @@
 const router = require('express').Router()
-const controller = require('../controllers/BoxController')
+const controller = require('../controllers/OrderListController')
 const middleware = require('../middleware')
 
-router.get('/:box_id', controller.GetBoxById)
+router.get('/:order_list_id', controller.GetOrderListById)
 
 router.post(
   '/:order_id/:product_id',
   middleware.stripToken,
   middleware.verifyToken,
-  controller.CreateBox
+  controller.CreateOrderList
 )
 
 router.delete(
   '/:order_id/:product_id',
   middleware.stripToken,
   middleware.verifyToken,
-  controller.DeleteBox
+  controller.DeleteOrderList
 )
 
 module.exports = router

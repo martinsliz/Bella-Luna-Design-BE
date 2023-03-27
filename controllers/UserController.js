@@ -1,15 +1,16 @@
-const { User, Class } = require('../models')
+const { User } = require('../models')
 const middleware = require('../middleware')
 
 const Register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body
+    const { firstName, lastName, email, password, address } = req.body
     let passwordDigest = await middleware.hashPassword(password)
     const user = await User.create({
       firstName,
       lastName,
       email,
-      passwordDigest
+      passwordDigest,
+      address
     })
     res.send(user)
   } catch (error) {
@@ -92,17 +93,19 @@ const CheckSession = async (req, res) => {
   res.send(payload)
 }
 
+const GetUsers = async (req, res) => {
+  try {
+    const users = await User.findAll()
+    res.send(users)
+  } catch (error) {
+    throw error
+  }
+}
+
 const GetUserById = async (req, res) => {
   try {
     const userId = parseInt(req.params.user_id)
-    const user = await User.findByPk(userId, {
-      include: [
-        {
-          model: Order,
-          attributes: ['id']
-        }
-      ]
-    })
+    const user = await User.findByPk(userId)
     res.send(user)
   } catch (error) {
     throw error
@@ -122,6 +125,7 @@ const DeleteUser = async (req, res) => {
 module.exports = {
   Register,
   Login,
+  GetUsers,
   GetUserById,
   UpdatePassword,
   CheckSession,
