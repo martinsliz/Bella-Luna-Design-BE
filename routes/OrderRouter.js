@@ -4,7 +4,7 @@ const middleware = require('../middleware')
 
 router.get('/', controller.GetOrders)
 router.get('/order_id', controller.GetOrderById)
-router.post('/:user_id/:order_id', controller.CreateOrder)
+router.post('/', controller.CreateOrder)
 router.put(
   '/:order_id',
   middleware.stripToken,
