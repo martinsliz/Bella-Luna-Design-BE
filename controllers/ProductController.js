@@ -38,7 +38,7 @@ const GetProductById = async (req, res) => {
         {
           model: Review,
           as: 'reviews',
-          attributes: ['id', 'userId', 'content']
+          attributes: { include: ['id', 'userId', 'content'] }
         }
       ]
     })
